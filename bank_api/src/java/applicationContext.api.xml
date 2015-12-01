@@ -18,6 +18,6 @@
     <bean class="com.fpmislata.daw2.security.impl.WebSessionProviderImpl" />
     <bean class="com.fpmislata.daw2.security.impl.AuthorizationImplDummy" />
     
-    <!-- <bean class="com.fpmislata.daw2.json.impl.JSONTransformerImplJackson" /> -->
+    <bean class="com.fpmislata.daw2.json.impl.JSONTransformerImplJackson" />
 
 </beans>

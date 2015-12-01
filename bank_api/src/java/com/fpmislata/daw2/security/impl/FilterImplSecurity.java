@@ -23,7 +23,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class FilterImplSecurity implements Filter {
-
     @Autowired
     WebSessionProvider webSessionProvider;
     @Autowired
