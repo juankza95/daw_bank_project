@@ -3,6 +3,7 @@ package com.fpmislata.daw2.persistence.dao.impl.jdbc;
 
 import com.fpmislata.daw2.business.domain.BankEntity;
 import com.fpmislata.daw2.core.exception.BusinessException;
+import com.fpmislata.daw2.core.exception.BusinessMessage;
 import com.fpmislata.daw2.persistence.dao.BankEntityDAO;
 import com.fpmislata.daw2.persistence.dao.impl.jdbc.connectionfactory.ConnectionFactory;
 
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +54,10 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             connectionFactory.close(connection);
 
             return bankEntity;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -89,8 +93,14 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             }
             
             return bankEntity;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            if(sqlex.getSQLState().equals("23000") && sqlex.getErrorCode() == 1062) {
+                throw new BusinessException(new BusinessMessage(null, sqlex.getMessage()));
+            } else {
+                throw new RuntimeException(sqlex);
+            }
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -119,8 +129,10 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             }
             
             return bankEntity;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -146,8 +158,10 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row deleted (" + rowsDeleted + ").");
             }
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 

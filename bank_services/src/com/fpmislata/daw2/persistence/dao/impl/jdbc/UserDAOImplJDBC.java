@@ -4,6 +4,7 @@ package com.fpmislata.daw2.persistence.dao.impl.jdbc;
 import com.fpmislata.daw2.business.domain.Role;
 import com.fpmislata.daw2.business.domain.User;
 import com.fpmislata.daw2.core.exception.BusinessException;
+import com.fpmislata.daw2.core.exception.BusinessMessage;
 import com.fpmislata.daw2.persistence.dao.UserDAO;
 import com.fpmislata.daw2.persistence.dao.impl.jdbc.connectionfactory.ConnectionFactory;
 import com.fpmislata.daw2.security.PasswordManager;
@@ -11,6 +12,7 @@ import com.fpmislata.daw2.security.PasswordManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +56,10 @@ public class UserDAOImplJDBC implements UserDAO {
             connectionFactory.close(connection);
 
             return user;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -92,8 +96,14 @@ public class UserDAOImplJDBC implements UserDAO {
             }
             
             return user;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            if(sqlex.getSQLState().equals("23000") && sqlex.getErrorCode() == 1062) {
+                throw new BusinessException(new BusinessMessage(null, sqlex.getMessage()));
+            } else {
+                throw new RuntimeException(sqlex);
+            }
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -123,8 +133,10 @@ public class UserDAOImplJDBC implements UserDAO {
             }
             
             return user;
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
@@ -150,8 +162,10 @@ public class UserDAOImplJDBC implements UserDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row deleted (" + rowsDeleted + ").");
             }
-        } catch(Exception ex) {
-            throw new RuntimeException(ex);
+        } catch(SQLException sqlex) {
+            throw new RuntimeException(sqlex);
+        } catch(RuntimeException rex) {
+            throw rex;
         }
     }
 
