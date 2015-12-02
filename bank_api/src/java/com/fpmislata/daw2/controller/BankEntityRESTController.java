@@ -4,6 +4,7 @@ package com.fpmislata.daw2.controller;
 import com.fpmislata.daw2.business.domain.BankEntity;
 import com.fpmislata.daw2.business.service.BankEntityService;
 import com.fpmislata.daw2.core.exception.BusinessException;
+import com.fpmislata.daw2.core.exception.BusinessMessage;
 import com.fpmislata.daw2.json.JSONTransformer;
 
 import java.io.IOException;
@@ -29,7 +30,114 @@ public class BankEntityRESTController {
     @Autowired
     JSONTransformer jsonTransformer;
     
-    //TODO
+    @RequestMapping(value = "/{bankEntityID}", method = RequestMethod.GET, produces = "application/json")
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                @PathVariable("bankEntityID") int bankEntityID) {
+        try {
+            BankEntity bankEntity = bankEntityService.get(bankEntityID);
+            if(bankEntity != null) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bankEntity));
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+        } catch(BusinessException bex) {
+            try {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                @RequestBody String jsonRequest) {
+        try {
+            BankEntity newBankEntity = jsonTransformer.toObject(jsonRequest, BankEntity.class);
+            BankEntity insertedBankEntity = bankEntityService.insert(newBankEntity);
+            if(insertedBankEntity != null) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(insertedBankEntity));
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        } catch(BusinessException bex) {
+            try {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @RequestMapping(value = "/{bankEntityID}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+    public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                @PathVariable("bankEntityID") int bankEntityID, @RequestBody String jsonRequest) {
+        try {
+            BankEntity newBankEntity = jsonTransformer.toObject(jsonRequest, BankEntity.class);
+            newBankEntity.setBankEntityID(bankEntityID);
+            BankEntity updatedBankEntity = bankEntityService.update(newBankEntity);
+            if(updatedBankEntity != null) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(updatedBankEntity));
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        } catch(BusinessException bex) {
+            try {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @RequestMapping(value = "/{bankEntityID}", method = RequestMethod.DELETE)
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                @PathVariable("bankEntityID") int bankEntityID) {
+        try {
+            boolean isDeleted = bankEntityService.delete(bankEntityID);
+            if(isDeleted) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                throw new BusinessException(new BusinessMessage(null, "Error: BankEntity already deleted."));
+            }
+        } catch(BusinessException bex) {
+            try {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(Exception ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
@@ -41,9 +149,6 @@ public class BankEntityRESTController {
                 httpServletResponse.getWriter().println(jsonTransformer.toJSON(bankEntitys));
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
-                //httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                //httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                //httpServletResponse.getWriter().println("[{ \"idEntidadBancaria\" : null }]");
             }
         } catch(BusinessException bex) {
             try {
@@ -51,10 +156,39 @@ public class BankEntityRESTController {
                 httpServletResponse.setContentType("application/json; charset=UTF-8");
                 httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
             } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 Logger.getLogger(UserRESTController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch(Exception ex) {
+        } catch(IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(UserRESTController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    // UPGRADE: Double type of search by name (Equals & Like).
+    @RequestMapping(value = "/{bankEntityName}", method = RequestMethod.GET, produces = "application/json")
+    public void findByName(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                @PathVariable("bankEntityName") String bankEntityName) {
+        try {
+            List<BankEntity> bankEntitys = bankEntityService.findByNameLike(bankEntityName);
+            if(bankEntitys != null && !bankEntitys.isEmpty()) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bankEntitys));
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+        } catch(BusinessException bex) {
+            try {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch(IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
