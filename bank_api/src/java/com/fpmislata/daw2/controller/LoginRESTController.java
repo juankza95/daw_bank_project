@@ -27,6 +27,7 @@ public class LoginRESTController {
             }
             
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.getWriter().println("<script> location.href='/bank/main.html'; </script>'");
         } catch(Exception ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }

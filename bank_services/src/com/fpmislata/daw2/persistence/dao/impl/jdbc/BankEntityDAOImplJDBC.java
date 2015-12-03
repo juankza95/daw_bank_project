@@ -1,4 +1,3 @@
-
 package com.fpmislata.daw2.persistence.dao.impl.jdbc;
 
 import com.fpmislata.daw2.business.domain.BankEntity;
@@ -18,22 +17,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BankEntityDAOImplJDBC implements BankEntityDAO {
+
     @Autowired
     private ConnectionFactory connectionFactory;
-    
+
     @Override
     public BankEntity get(Integer bankEntityID) throws BusinessException {
         try {
             Connection connection = connectionFactory.getConnection();
             BankEntity bankEntity;
 
-            String sql = "SELECT * FROM bankentity " +
-                    "WHERE bankEntityID=?";
+            String sql = "SELECT * FROM bankentity "
+                    + "WHERE bankEntityID=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, bankEntityID);
 
             ResultSet result = statement.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 bankEntity = new BankEntity(
                         result.getInt("bankEntityID"),
                         result.getString("name"),
@@ -42,8 +42,8 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                         result.getString("address"),
                         result.getString("ctc")
                 );
-                
-                if(result.next()) {
+
+                if (result.next()) {
                     throw new RuntimeException("SQL ERROR WHERE ID = " + bankEntityID);
                 }
             } else {
@@ -54,20 +54,20 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             connectionFactory.close(connection);
 
             return bankEntity;
-        } catch(SQLException sqlex) {
+        } catch (SQLException sqlex) {
             throw new RuntimeException(sqlex);
-        } catch(RuntimeException rex) {
+        } catch (RuntimeException rex) {
             throw rex;
         }
     }
 
     @Override
     public BankEntity insert(BankEntity bankEntity) throws BusinessException {
+        Connection connection = connectionFactory.getConnection();
         try {
-            Connection connection = connectionFactory.getConnection();
 
-            String sql = "INSERT INTO bankentity (name, bankCode, creationDate, address, ctc) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO bankentity (name, bankCode, creationDate, address, ctc) "
+                    + "VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, bankEntity.getName());
             statement.setInt(2, bankEntity.getBankCode());
@@ -87,19 +87,21 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row inserted (" + rowsInserted + ").");
             }
-            
             statement.close();
-            connectionFactory.close(connection);
-            
             return bankEntity;
-        } catch(SQLException sqlex) {
-            if(sqlex.getSQLState().equals("23000") && sqlex.getErrorCode() == 1062) {
+        } catch (SQLException sqlex) {
+            if (sqlex.getSQLState().equals("23000") && sqlex.getErrorCode() == 1062) {
                 throw new BusinessException(new BusinessMessage(null, sqlex.getMessage()));
             } else {
                 throw new RuntimeException(sqlex);
             }
-        } catch(RuntimeException rex) {
+        } catch (RuntimeException rex) {
             throw rex;
+        } finally {
+            try {
+                connectionFactory.close(connection);
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -108,8 +110,8 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
         try {
             Connection connection = connectionFactory.getConnection();
 
-            String sql = "UPDATE bankentity SET name=?, bankCode=?, creationDate=?, address=?, ctc=? " +
-                    "WHERE bankEntityID=?";
+            String sql = "UPDATE bankentity SET name=?, bankCode=?, creationDate=?, address=?, ctc=? "
+                    + "WHERE bankEntityID=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, bankEntity.getName());
             statement.setInt(2, bankEntity.getBankCode());
@@ -119,17 +121,16 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             statement.setInt(6, bankEntity.getBankEntityID());
 
             int rowsUpdated = statement.executeUpdate();
+
             if(rowsUpdated != 0 && rowsUpdated != 1) {
                 throw new RuntimeException("Error: More than 1 row updated (" + rowsUpdated + ").");
             }
-            
             statement.close();
             connectionFactory.close(connection);
-            
             return bankEntity;
-        } catch(SQLException sqlex) {
+        } catch (SQLException sqlex) {
             throw new RuntimeException(sqlex);
-        } catch(RuntimeException rex) {
+        } catch (RuntimeException rex) {
             throw rex;
         }
     }
@@ -139,8 +140,8 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
         try {
             Connection connection = connectionFactory.getConnection();
 
-            String sql = "DELETE FROM bankentity " +
-                    "WHERE bankEntityID=?";
+            String sql = "DELETE FROM bankentity "
+                    + "WHERE bankEntityID=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, bankEntityID);
 
@@ -148,17 +149,18 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
 
             statement.close();
             connectionFactory.close(connection);
-            
-            if(rowsDeleted == 0) {
+
+            if (rowsDeleted == 0) {
+
                 return false;
-            } else if(rowsDeleted == 1) {
+            } else if (rowsDeleted == 1) {
                 return true;
             } else {
                 throw new RuntimeException("Error: More than 1 row deleted (" + rowsDeleted + ").");
             }
-        } catch(SQLException sqlex) {
+        } catch (SQLException sqlex) {
             throw new RuntimeException(sqlex);
-        } catch(RuntimeException rex) {
+        } catch (RuntimeException rex) {
             throw rex;
         }
     }
@@ -173,7 +175,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             ResultSet result = statement.executeQuery();
 
             List<BankEntity> bankEntitys = new ArrayList<>();
-            while(result.next()) {
+            while (result.next()) {
                 BankEntity bankEntity = new BankEntity(
                         result.getInt("bankEntityID"),
                         result.getString("name"),
@@ -185,12 +187,12 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
 
                 bankEntitys.add(bankEntity);
             }
-            
+
             statement.close();
             connectionFactory.close(connection);
 
             return bankEntitys;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -200,15 +202,15 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
         try {
             Connection connection = connectionFactory.getConnection();
 
-            String sql = "SELECT * FROM bankentity " +
-                    "WHERE name=?";
+            String sql = "SELECT * FROM bankentity "
+                    + "WHERE name=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
 
             ResultSet result = statement.executeQuery();
 
             List<BankEntity> bankEntitys = new ArrayList<>();
-            while(result.next()) {
+            while (result.next()) {
                 BankEntity bankEntity = new BankEntity(
                         result.getInt("bankEntityID"),
                         result.getString("name"),
@@ -221,12 +223,12 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                 bankEntitys.add(bankEntity);
 
             }
- 
+
             statement.close();
             connectionFactory.close(connection);
 
             return bankEntitys;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -236,15 +238,15 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
         try {
             Connection connection = connectionFactory.getConnection();
 
-            String sql = "SELECT * FROM entidadbancaria " +
-                    "WHERE nombre LIKE '%?%'";
+            String sql = "SELECT * FROM entidadbancaria "
+                    + "WHERE nombre LIKE '%?%'";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
 
             ResultSet result = statement.executeQuery();
 
             List<BankEntity> bankEntitys = new ArrayList<>();
-            while(result.next()) {
+            while (result.next()) {
                 BankEntity bankEntity = new BankEntity(
                         result.getInt("bankEntityID"),
                         result.getString("name"),
@@ -257,14 +259,14 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                 bankEntitys.add(bankEntity);
 
             }
- 
+
             statement.close();
             connectionFactory.close(connection);
 
             return bankEntitys;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
-    
+
 }

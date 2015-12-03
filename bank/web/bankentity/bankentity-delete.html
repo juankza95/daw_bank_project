@@ -1,0 +1,26 @@
+
+<div ng-controller="BankEntityDeleteController">
+    <table border="1">
+        <tr>
+            <td>Bank Entity ID</td> 
+            <td>Name</td>
+            <td>Bank Code</td>
+            <td>Creation Date</td>
+            <td>Address</td>
+            <td>CTC</td>
+        </tr>
+
+        <tr>
+            <td>{{bankEntity.bankEntityID}}</td>
+            <td>{{bankEntity.name}}</td>
+            <td>{{bankEntity.bankCode}}</td>
+            <td>{{bankEntity.creationDate}}</td>
+            <td>{{bankEntity.address}}</td>
+            <td>{{bankEntity.ctc}}</td>
+        </tr>
+    </table>
+    <p> Are you sure to delete {{bankEntity.name}} Bank Entity? </p>
+    <button ng-click="delete()">C'mon, fck this shit.</button>
+    <a href="#/bankentity/list">OMG, no, wait!</a>
+    {{message}}
+</div>
