@@ -1,0 +1,22 @@
+<div ng-controller="BankEntityListController">
+    <table border="1">
+        <tr>
+            <td>Bank Entity ID</td>
+            <td>Name</td>
+            <td colspan="3">Actions</td>
+        </tr>
+
+        <tr ng-repeat="bankEntity in bankEntities">
+            <td>{{bankEntity.bankEntityID}}</td>
+            <td>{{bankEntity.name}}</td>
+            <td><a href="#/bankentity/detail/{{bankEntity.bankEntityID}}">SEE</a></td>
+            <td><a href="#/bankentity/delete/{{bankEntity.bankEntityID}}">DELETE</a></td>
+            <td><a href="#/bankentity/update/{{bankEntity.bankEntityID}}">UPDATE</a></td>
+        </tr>
+        
+    </table>
+    <a href="#/bankentity/insert">INSERT</a>
+</div>
+
+
+
