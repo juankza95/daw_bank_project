@@ -21,7 +21,7 @@ public class DatabaseMigrationImplFlyway implements DatabaseMigration {
             flyway.setEncoding("utf-8");
             flyway.migrate();
         } catch(Exception ex) {
-            throw new RuntimeException();
+            throw new RuntimeException(ex);
         }
     }
     
