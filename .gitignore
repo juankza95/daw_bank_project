@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -13,3 +12,7 @@ hs_err_pid*
 /bank_services/nbproject/private/
 /bank_api/nbproject/private/
 /bank/nbproject/private/
+/bank_services/dist/
+/bank_services/build/
+/bank_api/build/
+/bank_api/dist/
