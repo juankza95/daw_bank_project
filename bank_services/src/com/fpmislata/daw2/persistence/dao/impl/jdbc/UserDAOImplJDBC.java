@@ -79,10 +79,6 @@ public class UserDAOImplJDBC implements UserDAO {
             statement.setString(4, user.getRole().name());
 
             int rowsInserted = statement.executeUpdate();
-
-            statement.close();
-            connectionFactory.close(connection);
-            
             if(rowsInserted == 1) {
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
@@ -94,6 +90,9 @@ public class UserDAOImplJDBC implements UserDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row inserted (" + rowsInserted + ").");
             }
+            
+            statement.close();
+            connectionFactory.close(connection);
             
             return user;
         } catch(SQLException sqlex) {
@@ -124,13 +123,12 @@ public class UserDAOImplJDBC implements UserDAO {
             statement.setInt(5, user.getUserID());
 
             int rowsUpdated = statement.executeUpdate();
-
-            statement.close();
-            connectionFactory.close(connection);
-            
             if(rowsUpdated != 0 && rowsUpdated != 1) {
                 throw new RuntimeException("Error: More than 1 row updated (" + rowsUpdated + ").");
             }
+            
+            statement.close();
+            connectionFactory.close(connection);
             
             return user;
         } catch(SQLException sqlex) {

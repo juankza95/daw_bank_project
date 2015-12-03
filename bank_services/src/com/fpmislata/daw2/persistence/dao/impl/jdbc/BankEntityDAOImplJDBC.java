@@ -73,13 +73,9 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             statement.setInt(2, bankEntity.getBankCode());
             statement.setDate(3, new Date(bankEntity.getCreationDate().getTime()));
             statement.setString(4, bankEntity.getAddress());
-            statement.setString(5, bankEntity.getAddress());
+            statement.setString(5, bankEntity.getCtc());
 
             int rowsInserted = statement.executeUpdate();
-
-            statement.close();
-            connectionFactory.close(connection);
-            
             if(rowsInserted == 1) {
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
@@ -91,6 +87,9 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row inserted (" + rowsInserted + ").");
             }
+            
+            statement.close();
+            connectionFactory.close(connection);
             
             return bankEntity;
         } catch(SQLException sqlex) {
@@ -120,13 +119,12 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             statement.setInt(6, bankEntity.getBankEntityID());
 
             int rowsUpdated = statement.executeUpdate();
-
-            statement.close();
-            connectionFactory.close(connection);
-            
             if(rowsUpdated != 0 && rowsUpdated != 1) {
                 throw new RuntimeException("Error: More than 1 row updated (" + rowsUpdated + ").");
             }
+            
+            statement.close();
+            connectionFactory.close(connection);
             
             return bankEntity;
         } catch(SQLException sqlex) {
@@ -150,7 +148,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
 
             statement.close();
             connectionFactory.close(connection);
-
+            
             if(rowsDeleted == 0) {
                 return false;
             } else if(rowsDeleted == 1) {
