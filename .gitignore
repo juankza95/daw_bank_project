@@ -13,3 +13,9 @@ hs_err_pid*
 /bank_services/nbproject/private/
 /bank_api/nbproject/private/
 /bank/nbproject/private/
+/bank/build/
+/bank_api/build/
+/bank_services/dist/
+/bank_services/build/
+/bank/dist/
+/bank_api/dist/

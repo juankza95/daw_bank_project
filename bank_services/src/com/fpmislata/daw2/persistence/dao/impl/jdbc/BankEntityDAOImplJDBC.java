@@ -76,10 +76,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             statement.setString(5, bankEntity.getCtc());
 
             int rowsInserted = statement.executeUpdate();
-
-           
-
-            if (rowsInserted == 1) {
+            if(rowsInserted == 1) {
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
                     int returnedGeneratedKey = resultSet.getInt(1);
@@ -90,7 +87,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             } else {
                 throw new RuntimeException("Error: More than 1 row inserted (" + rowsInserted + ").");
             }
-
+            statement.close();
             return bankEntity;
         } catch (SQLException sqlex) {
             if (sqlex.getSQLState().equals("23000") && sqlex.getErrorCode() == 1062) {
@@ -125,13 +122,11 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
 
             int rowsUpdated = statement.executeUpdate();
 
-            statement.close();
-            connectionFactory.close(connection);
-
-            if (rowsUpdated != 0 && rowsUpdated != 1) {
+            if(rowsUpdated != 0 && rowsUpdated != 1) {
                 throw new RuntimeException("Error: More than 1 row updated (" + rowsUpdated + ").");
             }
-
+            statement.close();
+            connectionFactory.close(connection);
             return bankEntity;
         } catch (SQLException sqlex) {
             throw new RuntimeException(sqlex);
@@ -156,6 +151,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
             connectionFactory.close(connection);
 
             if (rowsDeleted == 0) {
+
                 return false;
             } else if (rowsDeleted == 1) {
                 return true;
