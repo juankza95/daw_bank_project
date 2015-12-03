@@ -15,22 +15,22 @@ public class AuthorizationImplDummy implements Authorization {
         if(url.equalsIgnoreCase(URL_LOGIN)) {
             return true;
         } else {
-            if(user != null) {
-                if(user.getRole() == Role.ROOT) {
-                    return true;
-                } else if(user.getRole() == Role.ADMIN) {
-                    return (httpmethod == HTTPMethod.GET || httpmethod == HTTPMethod.PUT || httpmethod == HTTPMethod.POST);
-                } else if(user.getRole() == Role.USER) {
-                    return (httpmethod == HTTPMethod.GET || httpmethod == HTTPMethod.PUT);
-                } else if(user.getRole() == Role.GUEST) {
-                    return (httpmethod == HTTPMethod.GET);
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
+//            if(user != null) {
+//                if(user.getRole() == Role.ROOT) {
+//                    return true;
+//                } else if(user.getRole() == Role.ADMIN) {
+//                    return (httpmethod == HTTPMethod.GET || httpmethod == HTTPMethod.PUT || httpmethod == HTTPMethod.POST);
+//                } else if(user.getRole() == Role.USER) {
+//                    return (httpmethod == HTTPMethod.GET || httpmethod == HTTPMethod.PUT);
+//                } else if(user.getRole() == Role.GUEST) {
+//                    return (httpmethod == HTTPMethod.GET);
+//                } else {
+//                    return false;
+//                }
+           // } else {
+                return true;
             }
         }
     }
 
-}
+
