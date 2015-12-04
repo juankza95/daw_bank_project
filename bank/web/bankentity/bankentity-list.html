@@ -9,9 +9,9 @@
         <tr ng-repeat="bankEntity in bankEntities">
             <td>{{bankEntity.bankEntityID}}</td>
             <td>{{bankEntity.name}}</td>
-            <td><a href="#/bankentity/detail/{{bankEntity.bankEntityID}}">SEE</a></td>
-            <td><a href="#/bankentity/delete/{{bankEntity.bankEntityID}}">DELETE</a></td>
-            <td><a href="#/bankentity/update/{{bankEntity.bankEntityID}}">UPDATE</a></td>
+            <td><a class="btn btn-info" href="#/bankentity/detail/{{bankEntity.bankEntityID}}">SEE</a></td>
+            <td><a class="btn btn-danger" href="#/bankentity/delete/{{bankEntity.bankEntityID}}">DELETE</a></td>
+            <td><a class="btn btn-info" href="#/bankentity/update/{{bankEntity.bankEntityID}}">UPDATE</a></td>
         </tr>
         
     </table>

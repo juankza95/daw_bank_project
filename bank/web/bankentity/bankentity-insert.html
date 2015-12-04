@@ -1,12 +1,35 @@
 
 
 <div>
+    
     <form ng-controller="BankEntityInsertController">
-        <p>Name: <input type="text" name="name" ng-model="bankEntity.name"/></p> 
-        <p>Bank Code: <input type="text" name="bankCode" ng-model="bankEntity.bankCode"/></p>
-        <p>Creation Date: <input type="text" name="creationDate" ng-model="bankEntity.creationDate"/></p>
-        <p>Address: <input type="text" name="address" ng-model="bankEntity.address"/></p>
-        <p>CTC: <input type="text" name="ctc" ng-model="bankEntity.ctc"/></p>
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" name="name" ng-model="bankEntity.name"/></td>
+            </tr>
+            <tr>
+                <td>Bank Code: </td>
+                <td><input type="text" name="bankCode" ng-model="bankEntity.bankCode"/></td>  
+            </tr>
+            <tr>
+                <td>Creation Date: </td>
+                <td><input type="text" name="creationDate" ng-model="bankEntity.creationDate"/></td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+                <td><input type="text" name="address" ng-model="bankEntity.address"/></td>
+            </tr>
+            <tr>
+                <td>CTC: </td>
+                <td><input type="text" name="ctc" ng-model="bankEntity.ctc"/></td>
+            </tr>
+        </table>
+       
+        
+       
+        
+    
         <input  ng-click="insert()" type="submit" value="Insertar"/><br>
         <br>
         
