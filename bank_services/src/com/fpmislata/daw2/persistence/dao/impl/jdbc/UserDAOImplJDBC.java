@@ -26,8 +26,9 @@ public class UserDAOImplJDBC implements UserDAO {
 
     @Override
     public User get(Integer userID) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
             User user;
 
             String sql = "SELECT * FROM user " +
@@ -53,20 +54,24 @@ public class UserDAOImplJDBC implements UserDAO {
             }
 
             statement.close();
-            connectionFactory.close(connection);
 
             return user;
         } catch(SQLException sqlex) {
             throw new RuntimeException(sqlex);
         } catch(RuntimeException rex) {
             throw rex;
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
-    }
+    };
 
     @Override
     public User insert(User user) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
             
             user.setPassword(passwordManager.encrypt(user.getPassword()));
 
@@ -92,7 +97,6 @@ public class UserDAOImplJDBC implements UserDAO {
             }
             
             statement.close();
-            connectionFactory.close(connection);
             
             return user;
         } catch(SQLException sqlex) {
@@ -103,13 +107,18 @@ public class UserDAOImplJDBC implements UserDAO {
             }
         } catch(RuntimeException rex) {
             throw rex;
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
 
     @Override
     public User update(User user) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
 
             user.setPassword(passwordManager.encrypt(user.getPassword()));
             
@@ -128,20 +137,24 @@ public class UserDAOImplJDBC implements UserDAO {
             }
             
             statement.close();
-            connectionFactory.close(connection);
             
             return user;
         } catch(SQLException sqlex) {
             throw new RuntimeException(sqlex);
         } catch(RuntimeException rex) {
             throw rex;
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
 
     @Override
     public boolean delete(Integer userID) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
 
             String sql = "DELETE FROM user " +
                     "WHERE userID=?";
@@ -151,7 +164,6 @@ public class UserDAOImplJDBC implements UserDAO {
             int rowsDeleted = statement.executeUpdate();
 
             statement.close();
-            connectionFactory.close(connection);
 
             if(rowsDeleted == 0) {
                 return false;
@@ -164,13 +176,18 @@ public class UserDAOImplJDBC implements UserDAO {
             throw new RuntimeException(sqlex);
         } catch(RuntimeException rex) {
             throw rex;
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
 
     @Override
     public List<User> findAll() throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
 
             String sql = "SELECT * FROM user";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -190,18 +207,22 @@ public class UserDAOImplJDBC implements UserDAO {
             }
             
             statement.close();
-            connectionFactory.close(connection);
 
             return users;
         } catch(Exception ex) {
             throw new RuntimeException(ex);
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
 
     @Override
     public List<User> findByNameEquals(String name) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
 
             String sql = "SELECT * FROM user " +
                     "WHERE name=?";
@@ -225,18 +246,22 @@ public class UserDAOImplJDBC implements UserDAO {
             }
  
             statement.close();
-            connectionFactory.close(connection);
 
             return users;
         } catch(Exception ex) {
             throw new RuntimeException(ex);
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
 
     @Override
     public List<User> findByNameLike(String name) throws BusinessException {
+        Connection connection = null;
         try {
-            Connection connection = connectionFactory.getConnection();
+            connection = connectionFactory.getConnection();
 
             String sql = "SELECT * FROM user " +
                     "WHERE name LIKE '%?%'";
@@ -260,11 +285,14 @@ public class UserDAOImplJDBC implements UserDAO {
             }
  
             statement.close();
-            connectionFactory.close(connection);
 
             return users;
         } catch(Exception ex) {
             throw new RuntimeException(ex);
+        } finally {
+            if(connection != null) {
+                connectionFactory.close(connection);
+            }
         }
     }
     
