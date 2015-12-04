@@ -1,40 +1,21 @@
+<form ng-controller="BankEntityInsertController">
+    Name: 
+    <input type="text" name="name" ng-model="bankEntity.name"/>
 
+    Bank Code: 
+    <input type="text" name="bankCode" ng-model="bankEntity.bankCode"/>  
 
-<div>
-    
-    <form ng-controller="BankEntityInsertController">
-        <table>
-            <tr>
-                <td>Name: </td>
-                <td><input type="text" name="name" ng-model="bankEntity.name"/></td>
-            </tr>
-            <tr>
-                <td>Bank Code: </td>
-                <td><input type="text" name="bankCode" ng-model="bankEntity.bankCode"/></td>  
-            </tr>
-            <tr>
-                <td>Creation Date: </td>
-                <td><input type="text" name="creationDate" ng-model="bankEntity.creationDate"/></td>
-            </tr>
-            <tr>
-                <td>Address: </td>
-                <td><input type="text" name="address" ng-model="bankEntity.address"/></td>
-            </tr>
-            <tr>
-                <td>CTC: </td>
-                <td><input type="text" name="ctc" ng-model="bankEntity.ctc"/></td>
-            </tr>
-        </table>
-       
-        
-       
-        
-    
-        <input  ng-click="insert()" type="submit" value="Insertar"/><br>
-        <br>
-        
-        <ul>
-            <li ng-repeat="error in errors">{{error.fieldName}} : {{error.message}}</li>
-        </ul>
-    </form>
-</div>
+    Creation Date: 
+    <input type="text" name="creationDate" ng-model="bankEntity.creationDate"/>
+
+    Address: 
+    <input type="text" name="address" ng-model="bankEntity.address"/>
+
+    CTC: 
+    <input type="text" name="ctc" ng-model="bankEntity.ctc"/>
+
+    <input  ng-click="insert()" type="submit" value="Insertar"/><br>
+    <ul>
+        <li ng-repeat="error in errors">{{error.fieldName}} : {{error.message}}</li>
+    </ul>
+</form>
