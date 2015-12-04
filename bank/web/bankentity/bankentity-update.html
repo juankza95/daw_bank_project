@@ -1,13 +1,37 @@
 <div>
-    <form ng-controller="BankEntityUpdateController" ng-init="isDisabled=true">
-        <p>Bank Entity ID: <input type="text" name="bankEntityID" ng-model="bankEntity.bankEntityID" ng-disabled="{{isDisabled}}"/></p>
-        <p>Name: <input type="text" name="name" ng-model="bankEntity.name"/></p> 
-        <p>Bank Code: <input type="text" name="bankCode" ng-model="bankEntity.bankCode"/></p>
-        <p>Creation Date: <input type="text" name="creationDate" ng-model="bankEntity.creationDate"/></p>
-        <p>Address: <input type="text" name="address" ng-model="bankEntity.address"/></p>
-        <p>CTC: <input type="text" name="ctc" ng-model="bankEntity.ctc"/></p>
-        <input  ng-click="update()" type="submit" value="Update" class="myButton"/><br>
-        
-       
+    <form ng-controller="BankEntityUpdateController" ng-init="isDisabled = true">
+
+        <div class="row">
+            <div class="col-md-3"><strong>Bank Entity ID: </strong></div>
+            <div class="col-md-5"><input type="text" name="bankEntityID" ng-model="bankEntity.bankEntityID" ng-disabled="{{isDisabled}}" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Name: </strong></div>
+            <div class="col-md-5"><input type="text" name="name" ng-model="bankEntity.name" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Bank Code: </strong></div>
+            <div class="col-md-5"><input type="text" name="bankCode" ng-model="bankEntity.bankCode" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Creation Date: </strong></div>
+            <div class="col-md-5"><input type="text" name="creationDate" ng-model="bankEntity.creationDate" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Address: </strong></div>
+            <div class="col-md-5"><input type="text" name="address" ng-model="bankEntity.address" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>CTC: </strong></div>
+            <div class="col-md-5"><input type="text" name="ctc" ng-model="bankEntity.ctc" class="form-control"/></div>
+        </div>
+        <div class="col-md-12"><input  ng-click="update()" type="submit" value="Update" class="btn btn-info"/><br></div>
+
+
     </form>
 </div>
