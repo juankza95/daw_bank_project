@@ -1,26 +1,31 @@
-
 <div ng-controller="BankEntityDeleteController">
-    <table border="1">
-        <tr>
-            <td>Bank Entity ID</td> 
-            <td>Name</td>
-            <td>Bank Code</td>
-            <td>Creation Date</td>
-            <td>Address</td>
-            <td>CTC</td>
-        </tr>
-
-        <tr>
-            <td>{{bankEntity.bankEntityID}}</td>
-            <td>{{bankEntity.name}}</td>
-            <td>{{bankEntity.bankCode}}</td>
-            <td>{{bankEntity.creationDate}}</td>
-            <td>{{bankEntity.address}}</td>
-            <td>{{bankEntity.ctc}}</td>
-        </tr>
-    </table>
-    <p> Are you sure to delete {{bankEntity.name}} Bank Entity? </p>
-    <button ng-click="delete()">C'mon, fck this shit.</button>
-    <a href="#/bankentity/list">OMG, no, wait!</a>
+        <h1>Bank Entity</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td><strong>Bank Entity ID</strong></td> 
+                    <td><strong>Name</strong></td>
+                    <td><strong>Bank Code</strong></td>
+                    <td><strong>Creation Date</strong></td>
+                    <td><strong>Address</strong></td>
+                    <td><strong>CTC</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{bankEntity.bankEntityID}}</td>
+                    <td>{{bankEntity.name}}</td>
+                    <td>{{bankEntity.bankCode}}</td>
+                    <td>{{bankEntity.creationDate}}</td>
+                    <td>{{bankEntity.address}}</td>
+                    <td>{{bankEntity.ctc}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div><!-- Tabla -->
+        <p> Are you sure to delete {{bankEntity.name}} Bank Entity? </p>
+        <a class="btn btn-danger" href="" ng-click="delete()">Yes</a>
+        <a class="btn btn-info" href="#/bankentity/list">No</a>
     {{message}}
 </div>

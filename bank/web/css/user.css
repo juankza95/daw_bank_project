@@ -4,16 +4,14 @@
 }
 
 .logo {
-  max-width: 535px;
+  max-width: 328px;
   width: 100%;
 }
 
 .navbar {
   background-color: #2D8632;
   border-radius: 0px;
-  border: 0px;
-  margin: 0px;
-  height: 107px;
+  height: 100px;
 }
 
 .table-responsive {
@@ -24,12 +22,11 @@ ul li {
   padding: 10px 10px 10px 10px;
 }
 
-ul li:hover {
-  background-color: #86C98A;
-  border: 1px solid black;
+ul li a:hover {
+  background-color: #86C98A !important;
 }
 
-.user-cp {
+/*.user-cp {
   margin: 10px 10px 10px 10px;
   background-image: url('img/user-cp-bg.png');
-}
+}*/
