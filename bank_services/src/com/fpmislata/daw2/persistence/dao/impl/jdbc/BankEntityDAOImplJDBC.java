@@ -38,7 +38,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                         result.getInt("bankEntityID"),
                         result.getString("name"),
                         result.getInt("bankCode"),
-                        result.getDate("creationDate"),
+                        new java.util.Date(result.getDate("creationDate").getTime()),
                         result.getString("address"),
                         result.getString("ctc")
                 );
@@ -194,7 +194,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                         result.getInt("bankEntityID"),
                         result.getString("name"),
                         result.getInt("bankCode"),
-                        result.getDate("creationDate"),
+                        new java.util.Date(result.getDate("creationDate").getTime()),
                         result.getString("address"),
                         result.getString("ctc")
                 );
@@ -233,7 +233,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                         result.getInt("bankEntityID"),
                         result.getString("name"),
                         result.getInt("bankCode"),
-                        result.getDate("creationDate"),
+                        new java.util.Date(result.getDate("creationDate").getTime()),
                         result.getString("address"),
                         result.getString("ctc")
                 );
@@ -273,7 +273,7 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
                         result.getInt("bankEntityID"),
                         result.getString("name"),
                         result.getInt("bankCode"),
-                        result.getDate("creationDate"),
+                        new java.util.Date(result.getDate("creationDate").getTime()),
                         result.getString("address"),
                         result.getString("ctc")
                 );
