@@ -10,7 +10,8 @@
     border-radius: 2px;
 }
 .login {
-    text-align: center;
+    background-color: rgba(45, 134, 50, 0.24) !important;
+    border-radius: 10px;
 }
 
 .logo {
