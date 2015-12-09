@@ -1,30 +1,48 @@
 .container { /*Limpiar márgenes*/
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+}
+.btn-login {
+    color: white;
+    background-color: #86C98A;
+    border: 1px solid #2D8632 !important;
+    padding: 10px 10px 10px 10px;
+    border-radius: 2px;
+}
+.login {
+    background-color: rgba(45, 134, 50, 0.24) !important;
+    border-radius: 10px;
 }
 
 .logo {
-  max-width: 328px;
-  width: 100%;
+    max-width: 328px;
+    width: 100%;
 }
 
 .navbar {
-  background-color: #2D8632;
-  border-radius: 0px;
-  height: 100px;
+    background-color: #2D8632;
+    border-radius: 0px;
+    height: 100px;
 }
 
 .table-responsive {
-  margin: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
 }
 
 ul li {
-  padding: 10px 10px 10px 10px;
+    padding: 3px 3px 3px 3px;
+}
+
+ul li a {
+    color: white;
+    background-color: #86C98A;
+    border: 1px solid #2D8632 !important;
 }
 
 ul li a:hover {
-  background-color: #86C98A !important;
+    background-color: #54A759 !important;
 }
+
 
 /*.user-cp {
   margin: 10px 10px 10px 10px;

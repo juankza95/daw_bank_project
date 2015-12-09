@@ -6,16 +6,14 @@
                 <tr>
                     <td><strong>Bank Entity ID</strong></td>
                     <td><strong>Name</strong></td>
-                    <td colspan="3"><strong>Actions</strong></td>
+                    <td><strong>Details</strong></td>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="bankEntity in bankEntities">
                     <td>{{bankEntity.bankEntityID}}</td>
                     <td>{{bankEntity.name}}</td>
-                    <td><a class="btn btn-info" href="#/bankentity/detail/{{bankEntity.bankEntityID}}">SEE</a>
-                        <a class="btn btn-info" href="#/bankentity/update/{{bankEntity.bankEntityID}}">UPDATE</a>
-                        <a class="btn btn-danger" href="#/bankentity/delete/{{bankEntity.bankEntityID}}">DELETE</a></td>
+                    <td><a class="btn btn-info" href="#/bankentity/detail/{{bankEntity.bankEntityID}}">Details</a></td>
                 </tr>
             </tbody>
         </table>
