@@ -1,8 +1,89 @@
 body {
     background-image: url('../img/background.png');
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 footer p{
     color: white !important;
 }
+
+    
+form#login-form {
+    display: block;
+}
+
+.panel-login {
+    display: block;
+    margin-top: 100px;
+    color: #aaa;
+    border-color: rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+    .panel-login>.panel-heading {
+        color: #00415d;
+        background-color: rgba(0,0,0,0.3);
+        border-color: transparent;
+        text-align:center;
+    }
+
+    .panel-login>.panel-heading a{
+        text-decoration: none;
+        color: #aaa;
+        font-weight: bold;
+        font-size: 15px;
+        -webkit-transition: all 0.1s linear;
+        -moz-transition: all 0.1s linear;
+        transition: all 0.1s linear;
+    }
+    .panel-login>.panel-heading a.active{
+        color: rgba(45,134,51,1);
+        font-size: 18px;
+    }
+
+    .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+        height: 45px;
+        font-size: 16px;
+        background-color: rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.3);
+        -webkit-transition: all 0.1s linear;
+        -moz-transition: all 0.1s linear;
+        transition: all 0.1s linear;
+    }
+    .panel-login input:hover {
+        outline:none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+        .btn-login {
+            height: auto;
+            padding: 14px 0;
+            font-size: 14px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #fff;
+            background-color: rgba(84,167,89,0.7);
+            border-color: rgba(84,167,89,1);
+            outline: none;
+        }
+        .btn-login:hover {
+            background-color: rgba(45,134,51,1);
+            border-color: rgba(45,134,51,1);
+            color: #fff;
+            outline: none;
+        }
+
+        .forgot-password {
+            font-style: normal !important;
+            text-decoration: underline;
+            color: #aaa;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+            color: #ccc;
+        }

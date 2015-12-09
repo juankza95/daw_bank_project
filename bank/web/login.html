@@ -1,16 +1,47 @@
-<div class="jumbotron login col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-    <div class="container">
-        <div class="">
-            <div class="form-group">
-                <strong>User:</strong>
-                <input type="text" name="name" class="form-control"/>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+        <div class="panel panel-login">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a href="#" class="active" id="login-form-link">Login</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input type="password" name="name" class="form-control"/>
-            </div>
-            <div class="row text-center">
-                <a href="/bank_api/api/login" class="btn-login">Log in</a>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form id="login-form" action="#">
+                            <div class="form-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                            </div>
+                            <div class="form-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                            </div>
+                            <!-- <div class="form-group text-center">
+                                <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                <label for="remember"> Remember Me</label>
+                            </div> -->
+                            <div class="form-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                                        <a href="/bank_api/api/login" id="login-submit" class="form-control btn btn-login">Log In</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
