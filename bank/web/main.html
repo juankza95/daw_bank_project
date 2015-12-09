@@ -32,18 +32,27 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 col-sm-3 sidebar">
+                    <a data-toggle="collapse" data-target="#categories" class="btn btn-categories">Categories</a>
+                    <div class="collapse categories" id="categories">
                     <ul class="nav nav-sidebar">
                         <li><a class="btn" href="#/bankentity/list">Bank Entities</a></li>
                         <li><a class="btn" href="">Usuarios</a></li>
                         <li><a class="btn">Cosas</a></li>
-                    </ul>
+                    </ul></div>
                 </div><!-- sidebar -->
                 <div class="col-md-10 col-sm-9">
                     <div ng-view></div>
                 </div>
             </div>
         </div><!--Container-->
-
+        <footer class="footer navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                <p class="text-muted col-xs-2 col-sm-2 col-md-offset-10 col-md-1">Contáctanos</p>
+                <p class="text-muted col-xs-2 col-sm-2 col-md-1">EcoBank© 2016</p>
+                </div>
+            </div>
+        </footer>
         <script src="lib/bootstrap/jquery.js" type="text/javascript"></script>
         <script src="lib/bootstrap/bootstrap.js" type="text/javascript"></script>
     </body>
