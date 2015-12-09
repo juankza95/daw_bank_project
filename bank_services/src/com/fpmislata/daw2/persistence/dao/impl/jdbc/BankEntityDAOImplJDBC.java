@@ -238,10 +238,10 @@ public class BankEntityDAOImplJDBC implements BankEntityDAO {
         try {
             Connection connection = connectionFactory.getConnection();
 
-            String sql = "SELECT * FROM entidadbancaria "
-                    + "WHERE nombre LIKE '%?%'";
+            String sql = "SELECT * FROM bankentity "
+                    + "WHERE name LIKE ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, name);
+            statement.setString(1, "%" + name + "%");
 
             ResultSet result = statement.executeQuery();
 
