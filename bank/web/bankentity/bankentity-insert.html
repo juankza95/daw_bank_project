@@ -1,17 +1,39 @@
+<form ng-controller="BankEntityInsertController">
+    <div class="row">
+        <div class="col-md-3"><strong>Bank Entity ID: </strong></div>
+        <div class="col-md-5"><input type="text" name="bankEntityID" ng-model="bankEntity.bankEntityID" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Name: </strong></div>
+        <div class="col-md-5"><input type="text" name="name" ng-model="bankEntity.name" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Bank Code: </strong></div>
+        <div class="col-md-5"><input type="text" name="bankCode" ng-model="bankEntity.bankCode" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Creation Date: </strong></div>
+        <div class="col-md-5"><input type="text" name="creationDate" ng-model="bankEntity.creationDate" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Address: </strong></div>
+        <div class="col-md-5"><input type="text" name="address" ng-model="bankEntity.address" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>CTC: </strong></div>
+        <div class="col-md-5"><input type="text" name="ctc" ng-model="bankEntity.ctc" class="form-control"/></div>
+    </div>
 
 
-<div>
-    <form ng-controller="BankEntityInsertController">
-        <p>Name: <input type="text" name="name" ng-model="bankEntity.name"/></p> 
-        <p>Bank Code: <input type="text" name="bankCode" ng-model="bankEntity.bankCode"/></p>
-        <p>Creation Date: <input type="text" name="creationDate" ng-model="bankEntity.creationDate"/></p>
-        <p>Address: <input type="text" name="address" ng-model="bankEntity.address"/></p>
-        <p>CTC: <input type="text" name="ctc" ng-model="bankEntity.ctc"/></p>
-        <input  ng-click="insert()" type="submit" value="Insertar"/><br>
-        <br>
-        
-        <ul>
-            <li ng-repeat="error in errors">{{error.fieldName}} : {{error.message}}</li>
-        </ul>
-    </form>
-</div>
+    <div class="col-md-12">
+        <input  ng-click="insert()" type="submit" value="Insertar" class="btn btn-info"/><br>
+    </div>
+    <ul>
+        <li ng-repeat="error in errors">{{error.fieldName}} : {{error.message}}</li>
+    </ul>
+</form>
