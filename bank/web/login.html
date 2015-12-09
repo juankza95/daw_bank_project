@@ -1,4 +1,4 @@
-<div class="jumbotron login col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+<div class="jumbotron login col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" ng-controller="IndexController">
     <div class="container">
         <div class="">
             <div class="form-group">
@@ -10,7 +10,7 @@
                 <input type="password" name="name" class="form-control"/>
             </div>
             <div class="row text-center">
-                <a href="/bank_api/api/login" class="btn-login">Log in</a>
+                <button ng-click="login()" class="btn-login">Log in</button>
             </div>
         </div>
     </div>
