@@ -1,8 +1,4 @@
 <form ng-controller="BankEntityInsertController">
-    <div class="row">
-        <div class="col-md-3"><strong>Bank Entity ID: </strong></div>
-        <div class="col-md-5"><input type="text" name="bankEntityID" ng-model="bankEntity.bankEntityID" class="form-control"/></div>
-    </div>
 
     <div class="row">
         <div class="col-md-3"><strong>Name: </strong></div>
@@ -29,11 +25,13 @@
         <div class="col-md-5"><input type="text" name="ctc" ng-model="bankEntity.ctc" class="form-control"/></div>
     </div>
 
-
-    <div class="col-md-12">
-        <input  ng-click="insert()" type="submit" value="Insertar" class="btn btn-info"/><br>
+    <div class="row">
+        <div class="col-md-12">
+            <input  ng-click="insert()" type="submit" value="Insertar" class="btn btn-info"/><br>
+        </div>
     </div>
-    <ul>
-        <li ng-repeat="error in errors">{{error.fieldName}} : {{error.message}}</li>
-    </ul>
+    <div>
+        <div ng-repeat="error in errors" class="alert alert-danger" role="alert"><strong>{{error.fieldName}}</strong> - {{error.message}}</div>
+    </div>
+
 </form>

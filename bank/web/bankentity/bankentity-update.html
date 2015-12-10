@@ -29,8 +29,12 @@
             <div class="col-md-3"><strong>CTC: </strong></div>
             <div class="col-md-5"><input type="text" name="ctc" ng-model="bankEntity.ctc" class="form-control"/></div>
         </div>
-        <div class="col-md-12"><input  ng-click="update()" type="submit" value="Update" class="btn btn-info"/><br></div>
-
+        <div class="row">
+            <div class="col-md-12"><input  ng-click="update()" type="submit" value="Update" class="btn btn-info"/><br></div>
+        </div>
+        <div>
+            <div ng-repeat="error in errors" class="alert alert-danger" role="alert"><strong>{{error.fieldName}}</strong> - {{error.message}}</div>
+        </div>
 
     </form>
 </div>

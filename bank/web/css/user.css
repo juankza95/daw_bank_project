@@ -82,4 +82,7 @@ ul li a:hover {
     .categories {
         display: none;
     }
+    .footer{
+        display:none;
+    }
 }

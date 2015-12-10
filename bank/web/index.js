@@ -6,7 +6,7 @@ function IndexController($scope, $location, $http) {
             url: '/bank_api/api/login'
         });
         response.success(function (data, status, headers, config) {
-            $location.path('/main.html');
+            location.href="./main.html";
         }).error(function (data, status, headers, config) {
             alert("Hubo un error al hacer login");
         });
