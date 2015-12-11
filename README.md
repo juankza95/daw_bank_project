@@ -5,6 +5,6 @@
 ## TODO
 
 * Validaciones: cif, código entidad a 4 dígitos.
- * ssdaddsa
-* Campo código entidad UNIQUE.
+ * CIF: por hacer.
+ * Código entidad tiene que ser de 4 dígitos y único.
 * Implementar DatePicker jQuery.
