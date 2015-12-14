@@ -16,3 +16,4 @@ hs_err_pid*
 /bank_services/build/
 /bank_api/build/
 /bank_api/dist/
+/bank/build/
