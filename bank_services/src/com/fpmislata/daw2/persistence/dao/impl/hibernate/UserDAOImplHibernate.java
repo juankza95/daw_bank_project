@@ -35,6 +35,7 @@ public class UserDAOImplHibernate extends GenericDAOImplHibernate<User, Integer>
         session.beginTransaction();
 
         // meter en hql la pass?
+        // pendiente de probar
         User user = (User) session.createQuery("SELECT u FROM user u WHERE email = :email").setParameter("email", email).list().get(0);
 
         session.getTransaction().commit();
