@@ -23,5 +23,10 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
     public List<User> findByNameLike(String name) throws BusinessException {
         return userDAO.findByNameLike(name);
     }
+
+    @Override
+    public boolean checkUserLogin(String email, String password) throws BusinessException {
+        return userDAO.checkUserLogin(email, password);
+    }
     
 }

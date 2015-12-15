@@ -295,5 +295,10 @@ public class UserDAOImplJDBC implements UserDAO {
             }
         }
     }
+
+    @Override
+    public boolean checkUserLogin(String email, String password) throws BusinessException {
+        return true;
+    }
     
 }
