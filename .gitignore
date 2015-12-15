@@ -1,0 +1,37 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+<<<<<<< OURS
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/bank_services/nbproject/private/
+/bank_api/nbproject/private/
+/bank/nbproject/private/
+/bank_services/dist/
+/bank_services/build/
+/bank_api/build/
+/bank_api/dist/
+/bank/build/
+=======
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/bank_services/nbproject/private/
+/bank_api/nbproject/private/
+/bank/nbproject/private/
+/bank/build/
+/bank_api/build/
+/bank_services/dist/
+/bank_services/build/
+/bank/dist/
+/bank_api/dist/
+>>>>>>> THEIRS
