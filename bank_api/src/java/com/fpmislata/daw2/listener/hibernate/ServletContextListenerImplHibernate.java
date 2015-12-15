@@ -1,4 +1,3 @@
-
 package com.fpmislata.daw2.listener.hibernate;
 
 import com.fpmislata.daw2.persistence.dao.impl.hibernate.HibernateUtil;
