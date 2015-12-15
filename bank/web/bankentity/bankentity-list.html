@@ -1,0 +1,26 @@
+<div ng-controller="BankEntityListController">
+    <h1>Bank Entity</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>Bank Entity ID</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Details</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bankEntity in bankEntities">
+                    <td>{{bankEntity.bankEntityID}}</td>
+                    <td>{{bankEntity.name}}</td>
+                    <td><a class="btn btn-info" href="#/bankentity/detail/{{bankEntity.bankEntityID}}">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- Tabla -->
+    <a class="btn btn-info" href="#/bankentity/insert">INSERT</a>
+
+</div>
+
+
+

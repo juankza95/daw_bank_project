@@ -1,0 +1,37 @@
+<form ng-controller="BankEntityInsertController">
+
+    <div class="row">
+        <div class="col-md-3"><strong>Name: </strong></div>
+        <div class="col-md-5"><input type="text" name="name" ng-model="bankEntity.name" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Bank Code: </strong></div>
+        <div class="col-md-5"><input type="text" name="bankCode" ng-model="bankEntity.bankCode" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Creation Date: </strong></div>
+        <div class="col-md-5"><input type="text" name="creationDate" ng-model="bankEntity.creationDate" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>Address: </strong></div>
+        <div class="col-md-5"><input type="text" name="address" ng-model="bankEntity.address" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"><strong>CTC: </strong></div>
+        <div class="col-md-5"><input type="text" name="ctc" ng-model="bankEntity.ctc" class="form-control"/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input  ng-click="insert()" type="submit" value="Insertar" class="btn btn-info"/><br>
+        </div>
+    </div>
+    <div>
+        <div ng-repeat="error in errors" class="alert alert-danger" role="alert"><strong>{{error.fieldName}}</strong> - {{error.message}}</div>
+    </div>
+
+</form>

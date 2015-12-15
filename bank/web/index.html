@@ -1,16 +1,46 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+INDEX.HTML = página con la barra superior que cargue main.html
+MAIN.HTML = enlace de login
 -->
-<html>
+<html ng-app="loginApp">
     <head>
-        <title>TODO supply a title</title>
+        <title>Ecobank</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="lib/bootstrap/jquery.js" type="text/javascript"></script>
+        <script src="lib/angular/js/angular.js" type="text/javascript"></script>
+        <script src="lib/angular/js/angular-locale_es-es.js" type="text/javascript"></script>
+        <script src="lib/angular/js/angular-route.js" type="text/javascript"></script>
+        <script src="app.js" type="text/javascript"></script>
+        <script src="app-route.js" type="text/javascript"></script>
+        <script src="index.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/user.css" rel="stylesheet">
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <nav class="navbar navbar-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img class="logo" src="img/logo.png">
+                </div>
+                <!--<div class="navbar-right user-cp">Usuario</div>-->
+            </div><!-- Container -->
+        </nav>
+        <div ng-view></div>
+        
+        <footer class="footer navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                <p class="text-muted col-xs-2 col-sm-2 col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-2">Contáctanos</p>
+                <p class="text-muted col-xs-2 col-sm-2 col-md-2">EcoBank© 2016</p>
+                </div>
+            </div>
+        </footer>
+        <!-- Scripts -->
+        <script src="lib/bootstrap/bootstrap.js" type="text/javascript"></script>
     </body>
 </html>
