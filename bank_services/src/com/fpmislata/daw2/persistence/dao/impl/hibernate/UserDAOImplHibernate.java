@@ -34,12 +34,12 @@ public class UserDAOImplHibernate extends GenericDAOImplHibernate<User, Integer>
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        // hay algún método para sacar uno y no lista?
-        List<User> users = session.createQuery("SELECT u FROM user u WHERE email = " + email).list();
+        // meter en hql la pass?
+        User user = (User) session.createQuery("SELECT u FROM user u WHERE email = :email").setParameter("email", email).list().get(0);
 
         session.getTransaction().commit();
         session.close();
 
-        return (users.get(0).getPassword().equals(password));
+        return (user.getPassword().equals(password));
     }
 }

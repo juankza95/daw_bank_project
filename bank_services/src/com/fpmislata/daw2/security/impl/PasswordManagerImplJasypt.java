@@ -8,8 +8,8 @@ import org.jasypt.util.password.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class PasswordManagerImplJasypt implements PasswordManager {
-    //@Autowired
-    PasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+    @Autowired
+    PasswordEncryptor passwordEncryptor;
     
     @Override
     public String encrypt(String userPassword) {

@@ -20,7 +20,7 @@
     <bean class="com.fpmislata.daw2.persistence.dao.impl.jdbc.UserDAOImplJDBC" />
     <bean class="com.fpmislata.daw2.business.service.impl.UserServiceImpl" />
     
-     <!-- <bean class="org.jasypt.util.password.BasicPasswordEncryptor" /> -->
+    <bean class="org.jasypt.util.password.BasicPasswordEncryptor" />
     <bean class="com.fpmislata.daw2.security.impl.PasswordManagerImplJasypt" />
     
 </beans>
