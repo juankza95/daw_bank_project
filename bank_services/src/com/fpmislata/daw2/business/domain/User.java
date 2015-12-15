@@ -1,4 +1,3 @@
-
 package com.fpmislata.daw2.business.domain;
 
 public class User {
