@@ -1,0 +1,31 @@
+<div ng-controller="UserDeleteController">
+        <h1>User</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td><strong>User ID</strong></td> 
+                    <td><strong>Name</strong></td>
+                    <td><strong>Surname</strong></td>
+                    <td><strong>Password</strong></td>
+                    <td><strong>Email</strong></td>
+                    <td><strong>Role</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.userID}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div><!-- Tabla -->
+        <p> Are you sure to delete {{user.name}} User? </p>
+        <a class="btn btn-danger" href="" ng-click="delete()">Yes</a>
+        <a class="btn btn-info" href="#/user/list">No</a>
+ 
+</div>

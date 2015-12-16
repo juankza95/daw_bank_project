@@ -1,0 +1,40 @@
+<div>
+    <form ng-controller="UserUpdateController" ng-init="isDisabled = true">
+        <div class="row">
+            <div class="col-md-3"><strong>User ID: </strong></div>
+            <div class="col-md-5"><input type="text" name="userID" ng-model="user.userID" ng-disabled="{{isDisabled}}" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Name: </strong></div>
+            <div class="col-md-5"><input type="text" name="name" ng-model="user.name" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Surname: </strong></div>
+            <div class="col-md-5"><input type="text" name="surname" ng-model="user.surname" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Password: </strong></div>
+            <div class="col-md-5"><input type="password" name="password" ng-model="user.password" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Email: </strong></div>
+            <div class="col-md-5"><input type="text" name="email" ng-model="user.email" class="form-control"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><strong>Role: </strong></div>
+            <div class="col-md-5"><input type="text" name="role" ng-model="user.role" class="form-control"/></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><input  ng-click="update()" type="submit" value="Update" class="btn btn-info"/><br></div>
+        </div>
+        <div>
+            <div ng-repeat="error in errors" class="alert alert-danger" role="alert"><strong>{{error.fieldName}}</strong> - {{error.message}}</div>
+        </div>
+
+    </form>
+</div>

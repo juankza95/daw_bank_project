@@ -1,0 +1,27 @@
+<div ng-controller="UserDetailController">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>User ID</strong></td> 
+                    <td><strong>Name</strong></td>
+                    <td><strong>Surname</strong></td>
+                    <td><strong>Email</strong></td>
+                    <td><strong>Role</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.userID}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- Tabla -->
+
+    <a class="btn btn-info" href="#/user/update/{{user.userID}}">UPDATE</a>
+    <a class="btn btn-danger" href="#/user/delete/{{user.userID}}">DELETE</a>
+</div>
