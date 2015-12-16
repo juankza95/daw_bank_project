@@ -22,7 +22,7 @@ public class LoginRESTController {
     public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
             if(!isLogged(httpServletRequest.getSession())) {
-                User user = new User(0, "guest", "guest", "guest@domain.com", Role.GUEST);
+                User user = new User(0, "guest", "guest", "surguest", "guest@domain.com", Role.GUEST);
                 httpServletRequest.getSession().setAttribute("WEB_SESSION", new WebSession(user, new Date()));
             }
             
