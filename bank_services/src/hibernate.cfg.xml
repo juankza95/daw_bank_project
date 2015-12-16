@@ -7,8 +7,6 @@
     
     
     <mapping resource="com/fpmislata/daw2/persistence/dao/impl/hibernate/hbm/BankEntity.hbm.xml" />
-    <mapping class="com.fpmislata.daw2.business.domain.BankEntity" />
-    <!--<mapping resource="com/fpmislata/daw2/persistence/dao/impl/hibernate/hbm/User.hbm.xml" />
-    <mapping class="com.fpmislata.daw2.business.domain.User" />-->
+    <mapping resource="com/fpmislata/daw2/persistence/dao/impl/hibernate/hbm/User.hbm.xml" />
   </session-factory>
 </hibernate-configuration>

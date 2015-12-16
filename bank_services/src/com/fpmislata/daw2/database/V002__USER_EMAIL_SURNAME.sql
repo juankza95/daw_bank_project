@@ -1,1 +1,0 @@
-ALTER TABLE `user` ADD COLUMN `surname` VARCHAR(50) NULL DEFAULT NULL AFTER `name`, ADD UNIQUE INDEX `email` (`email`);

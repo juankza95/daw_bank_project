@@ -13,11 +13,10 @@
     <!-- <bean id="connectionFactory" class="com.fpmislata.daw2.persistence.dao.impl.jdbc.connectionfactory.ConnectionFactoryImplDriverManager" /> -->
     <bean class="com.fpmislata.daw2.persistence.dao.impl.jdbc.connectionfactory.ConnectionFactoryImplDataSource" /> 
     
-    <!-- <bean class="com.fpmislata.daw2.persistence.dao.impl.jdbc.BankEntityDAOImplJDBC" /> -->
     <bean class="com.fpmislata.daw2.persistence.dao.impl.hibernate.BankEntityDAOImplHibernate" />
     <bean class="com.fpmislata.daw2.business.service.impl.BankEntityServiceImpl" />
     
-    <bean class="com.fpmislata.daw2.persistence.dao.impl.jdbc.UserDAOImplJDBC" />
+    <bean class="com.fpmislata.daw2.persistence.dao.impl.hibernate.UserDAOImplHibernate" />
     <bean class="com.fpmislata.daw2.business.service.impl.UserServiceImpl" />
     
     <bean class="org.jasypt.util.password.BasicPasswordEncryptor" />

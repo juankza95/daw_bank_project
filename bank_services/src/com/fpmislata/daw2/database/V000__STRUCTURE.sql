@@ -13,8 +13,10 @@ CREATE TABLE IF NOT EXISTS `bankentity` (
 CREATE TABLE IF NOT EXISTS `user` (
   `userID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
+  `surname` varchar(30) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `role` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
+  PRIMARY KEY (`userID`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

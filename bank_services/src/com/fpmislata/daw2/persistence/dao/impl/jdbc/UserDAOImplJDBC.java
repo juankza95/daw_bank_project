@@ -41,6 +41,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -198,6 +199,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -236,6 +238,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -275,6 +278,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))

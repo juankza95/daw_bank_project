@@ -4,7 +4,7 @@ INSERT IGNORE INTO `bankentity` (`bankEntityID`, `name`, `bankCode`, `creationDa
 	(4, 'abc', 67890, '2015-10-01 00:00:00', 'abc', 'abc12345'),
 	(5, 'abc', 13579, '2015-10-28 00:00:00', 'abc12345', 'abc1234567890');
 
-INSERT IGNORE INTO `user` (`userID`, `name`, `password`, `email`, `role`) VALUES
-        (3, 'admin', 'admin', 'admin@domain.com', 'ADMIN'),
-        (4, 'user', 'user', 'user@domain.com', 'USER'),
-        (5, 'guest', 'guest', 'guest@domain.com', 'GUEST');
+INSERT IGNORE INTO `user` (`userID`, `name`, `surname`, `password`, `email`, `role`) VALUES
+        (3, 'admin', 'admin', 'shuradmin', 'admin@domain.com', 'ADMIN'),
+        (4, 'user', 'user', 'suruser', 'user@domain.com', 'USER'),
+        (5, 'guest', 'guest', 'shurguest', 'guest@domain.com', 'GUEST');

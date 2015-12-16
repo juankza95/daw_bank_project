@@ -1,17 +1,21 @@
 package com.fpmislata.daw2.business.domain;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
     private int userID;
     private String name;
+    private String surname;
     private String password;
     private String email;
     private Role role;
     
     public User() { }
     
-    public User(int userID, String name, String password, String email, Role role) {
+    public User(int userID, String name, String surname, String password, String email, Role role) {
         this.userID = userID;
         this.name = name;
+        this.surname = surname;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -29,6 +33,13 @@ public class User {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurame() {
+        return surname;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPassword() {
