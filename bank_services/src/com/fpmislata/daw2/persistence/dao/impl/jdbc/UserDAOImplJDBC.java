@@ -41,6 +41,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -75,13 +76,14 @@ public class UserDAOImplJDBC implements UserDAO {
             
             user.setPassword(passwordManager.encrypt(user.getPassword()));
 
-            String sql = "INSERT INTO user (name, password, email, role) " +
+            String sql = "INSERT INTO user (name, surname, password, email, role) " +
                     "VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getRole().name());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getEmail());
+            statement.setString(5, user.getRole().name());
 
             int rowsInserted = statement.executeUpdate();
             if(rowsInserted == 1) {
@@ -122,14 +124,15 @@ public class UserDAOImplJDBC implements UserDAO {
 
             user.setPassword(passwordManager.encrypt(user.getPassword()));
             
-            String sql = "UPDATE user SET name=?, password=?, email=?, role=? " +
+            String sql = "UPDATE user SET name=?, surname=?, password=?, email=?, role=? " +
                     "WHERE userID=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getRole().name());
-            statement.setInt(5, user.getUserID());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getEmail());
+            statement.setString(5, user.getRole().name());
+            statement.setInt(6, user.getUserID());
 
             int rowsUpdated = statement.executeUpdate();
             if(rowsUpdated != 0 && rowsUpdated != 1) {
@@ -198,6 +201,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -236,6 +240,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))
@@ -275,6 +280,7 @@ public class UserDAOImplJDBC implements UserDAO {
                 User user = new User(
                         result.getInt("userID"),
                         result.getString("name"),
+                        result.getString("surname"),
                         result.getString("password"),
                         result.getString("email"),
                         Role.valueOf(result.getString("role"))

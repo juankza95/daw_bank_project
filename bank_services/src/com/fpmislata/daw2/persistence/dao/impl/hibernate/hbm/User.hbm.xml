@@ -2,10 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.daw2.business.domain.User" table="user" >
-        <id column="userID" name="bankEntityID" type="integer"/>
+        <id column="userID" name="userID" type="integer"/>
         <property name="name" />
+        <property name="surname" />
         <property name="password" />
         <property name="email" />
-        <property name="role" />
+        <property name="role" >
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.fpmislata.daw2.business.domain.Role</param>
+                <param name="type">12</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>
