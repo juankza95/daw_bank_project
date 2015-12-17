@@ -140,9 +140,16 @@ public class BankEntityRESTController {
     }
     
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public void find(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
-            List<BankEntity> bankEntitys = bankEntityService.findAll();
+            List<BankEntity> bankEntitys;
+            
+            if(httpServletRequest.getParameter("bankEntityName") != null) {
+                bankEntitys = bankEntityService.findByNameLike(httpServletRequest.getParameter("bankEntityName"));
+            } else {
+                bankEntitys = bankEntityService.findAll();
+            }
+            
             if(bankEntitys != null && !bankEntitys.isEmpty()) {
                 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
                 httpServletResponse.setContentType("application/json; charset=UTF-8");
@@ -162,33 +169,6 @@ public class BankEntityRESTController {
         } catch(IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             Logger.getLogger(UserRESTController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    // UPGRADE: Double type of search by name (Equals & Like).
-    @RequestMapping(value = "/{bankEntityName}", method = RequestMethod.GET, produces = "application/json")
-    public void findByName(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                @PathVariable("bankEntityName") String bankEntityName) {
-        try {
-            List<BankEntity> bankEntitys = bankEntityService.findByNameLike(bankEntityName);
-            if(bankEntitys != null && !bankEntitys.isEmpty()) {
-                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-                httpServletResponse.setContentType("application/json; charset=UTF-8");
-                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bankEntitys));
-            } else {
-                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
-            }
-        } catch(BusinessException bex) {
-            try {
-                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                httpServletResponse.setContentType("application/json; charset=UTF-8");
-                httpServletResponse.getWriter().println(jsonTransformer.toJSON(bex.getBusinessMessages()));
-            } catch (IOException ex) {
-                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch(IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            Logger.getLogger(BankEntityRESTController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

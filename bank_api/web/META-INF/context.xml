@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/bank_api">
-    <Resource
+   <Resource
         type="javax.sql.DataSource"
         auth="Container"
         name="jdbc/MySQLDS"
@@ -8,10 +8,9 @@
         url="jdbc:mysql://localhost:3306/bank"
         username="bank"
         password="bank"
-
         maxTotal="5"
         maxIdle="3"
         maxWaitMillis="1000"
         validationQuery="SELECT 1 FROM dual"
-    />
+    /> 
 </Context>

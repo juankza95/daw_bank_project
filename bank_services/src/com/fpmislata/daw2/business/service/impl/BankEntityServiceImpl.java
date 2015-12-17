@@ -29,24 +29,51 @@ public class BankEntityServiceImpl extends GenericServiceImpl<BankEntity, Intege
     @Override
     public BankEntity insert(BankEntity bankEntity) throws BusinessException {
         List<BusinessMessage> businessMessages = new ArrayList();
-        if (bankEntity.getName() == null) {
-            businessMessages.add(new BusinessMessage("Name:", "Name cannot be null."));
+        BusinessException businessException;
+        if (bankEntity.getName() == null || bankEntity.getName().equals("")) {
+            businessMessages.add(new BusinessMessage("Name", "Name cannot be null."));
         }
-        if (String.valueOf(bankEntity.getBankCode()).length() != 5) {
-            businessMessages.add(new BusinessMessage("Bank Code", "Bank code must have 5 characters."));
-        }
-        if (bankEntity.getCreationDate() == null) {
-            businessMessages.add(new BusinessMessage("Creation Date", "Creation Date cannot be null."));
-        }
-        if (bankEntity.getAddress() == null) {
+        if (bankEntity.getAddress() == null || bankEntity.getAddress().equals("")) {
             businessMessages.add(new BusinessMessage("Address", "Address cannot be null."));
         }
 
-        if (!businessMessages.isEmpty()) {
-            throw new BusinessException(businessMessages);
+        if (String.valueOf(bankEntity.getBankCode()).length() != 5) {
+            businessMessages.add(new BusinessMessage("Bank Code", "Bank code must be 5 chars lenght."));
+        }
+        if (bankEntity.getCreationDate() == null) {
+            businessMessages.add(new BusinessMessage("Date", "Date cannot be null."));
         }
 
+        if (!businessMessages.isEmpty()) {
+            businessException = new BusinessException(businessMessages);
+            throw businessException;
+        }
         return bankEntityDAO.insert(bankEntity);
     }
 
+    @Override
+    public BankEntity update(BankEntity bankEntity) throws BusinessException {
+        List<BusinessMessage> businessMessages = new ArrayList();
+        BusinessException businessException;
+        if (bankEntity.getName() == null || bankEntity.getName().equals("")) {
+            businessMessages.add(new BusinessMessage("Name", "Name cannot be null."));
+        }
+
+        if (bankEntity.getAddress().equals("") || bankEntity.getAddress() == null) {
+            businessMessages.add(new BusinessMessage("Address", "Address cannot be null."));
+        }
+
+        if (String.valueOf(bankEntity.getBankCode()).length() != 5) {
+            businessMessages.add(new BusinessMessage("Bank Code", "Bank code must be 5 chars lenght."));
+        }
+        if (bankEntity.getCreationDate() == null) {
+            businessMessages.add(new BusinessMessage("Date", "Date cannot be null."));
+        }
+
+        if (!businessMessages.isEmpty()) {
+            businessException = new BusinessException(businessMessages);
+            throw businessException;
+        }
+        return bankEntityDAO.update(bankEntity);
+    }
 }
